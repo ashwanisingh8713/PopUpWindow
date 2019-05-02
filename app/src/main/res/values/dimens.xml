@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="personal_info_et_height">44dp</dimen>
+    <dimen name="personal_info_et_gap">5dp</dimen>
+    <dimen name="personal_info_et_paddingBottom">5dp</dimen>
+    <dimen name="personal_info_update_btn_parent_height">60dp</dimen>
+
+</resources>
