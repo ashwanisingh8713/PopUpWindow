@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,34 +39,40 @@ public class MainActivity extends AppCompatActivity {
         showGenderPopUp();
         showCountryPopUp();
 
+        TextView deviceType_Txt = findViewById(R.id.deviceType_Txt);
+        deviceType_Txt.setText("Device Type :: "+getResources().getString(R.string.type_device));
+
     }
 
 
     private void showGenderPopUp() {
-        final int genderWidth = 180;
-        final int genderHeight = 120;
-        final int genderXPadding = -280;
-        final int genderYPadding = 1000;
+
+        final int genderWidth = getResources().getDimensionPixelSize(R.dimen.genderWidth);
+        final int genderHeight = getResources().getDimensionPixelSize(R.dimen.genderHeight);
 
         genderLayoutET.setOnClickListener(v->{
 
-            int[] tableLayoutCorners = new int[2];
+            int[] locationOnWindow = new int[2];
 
-            genderLayoutET.getLocationInWindow(tableLayoutCorners);
+            genderLayout.getLocationInWindow(locationOnWindow);
+
+            int XPadding = locationOnWindow[0];
+            int YPadding = locationOnWindow[1];
+            int deviceHeight = StandardPopupWindow.getDeviceHeight(MainActivity.this);
+            int layoutHeight = genderLayout.getHeight();
+
+            int finalBottomPadding = deviceHeight-(YPadding+layoutHeight)-layoutHeight*2;
+            int finalXPadding = XPadding-YPadding-YPadding/2;
 
             List<String> strList = new ArrayList<>();
             strList.add("Male");
             strList.add("Female");
             strList.add("Tran");
-//            strList.add("TTTTT");
-//            strList.add("TTTTT");
-//            strList.add("TTTTT");
 
             final StandardPopupWindow window = new StandardPopupWindow(MainActivity.this, strList, genderWidth, genderHeight);
-//            window.show(genderLayoutET, Gravity.BOTTOM, -500,
-//                    CommonUtil.getDeviceHeight(getActivity())-tableLayoutCorners[1]);
+            window.show(genderLayout, Gravity.BOTTOM, finalXPadding, finalBottomPadding);
 
-            window.show(genderLayout, Gravity.BOTTOM, genderXPadding, genderYPadding);
+//            window.show(genderLayout, Gravity.BOTTOM, genderXPadding, genderYPadding);
 
             window.setOnStandardPopupItemSelect(new StandardPopupWindow.OnStandardPopupItemSelect() {
                 @Override
@@ -80,16 +87,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showCountryPopUp() {
-        final int genderWidth = 180;
-        final int genderHeight = 120;
-        final int genderXPadding = -280;
-        final int genderYPadding = 1000;
+        final int genderWidth = getResources().getDimensionPixelSize(R.dimen.countryWidth);
+        final int genderHeight = getResources().getDimensionPixelSize(R.dimen.countryHeight);
 
         countryET.setOnClickListener(v->{
 
-            int[] tableLayoutCorners = new int[2];
+            int[] locationOnWindow = new int[2];
 
-            countryET.getLocationInWindow(tableLayoutCorners);
+            countryLayout.getLocationInWindow(locationOnWindow);
+
+            int XPadding = locationOnWindow[0];
+            int YPadding = locationOnWindow[1];
+            int deviceHeight = StandardPopupWindow.getDeviceHeight(MainActivity.this);
+            int layoutHeight = countryLayout.getHeight();
+
+            int finalBottomPadding = deviceHeight-(YPadding+layoutHeight)-layoutHeight*2;
+            int finalXPadding = XPadding-YPadding;
 
             List<String> strList = new ArrayList<>();
             strList.add("INDIA");
@@ -98,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
             strList.add("SWITZERLAND");
 
             final StandardPopupWindow window = new StandardPopupWindow(MainActivity.this, strList, genderWidth, genderHeight);
-//            window.show(genderLayoutET, Gravity.BOTTOM, -500,
-//                    CommonUtil.getDeviceHeight(getActivity())-tableLayoutCorners[1]);
 
-            window.show(countryET, Gravity.BOTTOM, genderXPadding, genderYPadding);
+            window.show(countryLayout, Gravity.BOTTOM, finalXPadding, finalBottomPadding);
+
+//            window.show(countryET, Gravity.BOTTOM, genderXPadding, genderYPadding);
 
             window.setOnStandardPopupItemSelect(new StandardPopupWindow.OnStandardPopupItemSelect() {
                 @Override

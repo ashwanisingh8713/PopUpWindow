@@ -41,14 +41,14 @@ public class StandardPopupWindow extends android.widget.PopupWindow {
         mListView = popupView.findViewById(R.id.listView);
 
         if(widht != -1) {
-            int w = (int) pxFromDp(context, widht);
-            setWidth(w);
+//            int w = (int) pxFromDp(context, widht);
+            setWidth(widht);
         } else {
             setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
         }
         if(height != -1) {
-            int h = (int) pxFromDp(context, height);
-            setHeight(h);
+//            int h = (int) pxFromDp(context, height);
+            setHeight(height);
         } else {
             setHeight(getDeviceHeight((Activity)context)/2);
         }
