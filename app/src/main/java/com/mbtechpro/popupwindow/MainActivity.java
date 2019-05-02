@@ -59,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
             int XPadding = locationOnWindow[0];
             int YPadding = locationOnWindow[1];
             int deviceHeight = StandardPopupWindow.getDeviceHeight(MainActivity.this);
+            int deviceWidth = StandardPopupWindow.getDeviceWidth(MainActivity.this);
             int layoutHeight = genderLayout.getHeight();
+            int layoutWidth = genderLayout.getWidth();
 
             int finalBottomPadding = deviceHeight-(YPadding+layoutHeight)-layoutHeight*2;
-            int finalXPadding = XPadding-YPadding-YPadding/2;
+            int finalXPadding = -((deviceWidth-layoutWidth)/2-XPadding);
 
             List<String> strList = new ArrayList<>();
             strList.add("Male");
@@ -71,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
             final StandardPopupWindow window = new StandardPopupWindow(MainActivity.this, strList, genderWidth, genderHeight);
             window.show(genderLayout, Gravity.BOTTOM, finalXPadding, finalBottomPadding);
-
-//            window.show(genderLayout, Gravity.BOTTOM, genderXPadding, genderYPadding);
 
             window.setOnStandardPopupItemSelect(new StandardPopupWindow.OnStandardPopupItemSelect() {
                 @Override
@@ -99,10 +99,12 @@ public class MainActivity extends AppCompatActivity {
             int XPadding = locationOnWindow[0];
             int YPadding = locationOnWindow[1];
             int deviceHeight = StandardPopupWindow.getDeviceHeight(MainActivity.this);
+            int deviceWidth = StandardPopupWindow.getDeviceWidth(MainActivity.this);
             int layoutHeight = countryLayout.getHeight();
+            int layoutWidth = countryLayout.getWidth();
 
             int finalBottomPadding = deviceHeight-(YPadding+layoutHeight)-layoutHeight*2;
-            int finalXPadding = XPadding-YPadding;
+            int finalXPadding = (deviceWidth)/2;
 
             List<String> strList = new ArrayList<>();
             strList.add("INDIA");
